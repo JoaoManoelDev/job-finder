@@ -20,10 +20,12 @@ const navItems: NavItems[] = [
   {
     label: 'Sobre',
     href: '/about'
-  },  {
+  },
+  {
     label: 'Vagas',
     href: '/jobs'
-  },  {
+  },
+  {
     label: 'Cadastrar Vagas',
     href: '/jobs/create'
   },
@@ -33,7 +35,7 @@ export const Navbar = () => {
   const pathname = usePathname()
 
   return (
-    <nav className="flex justify-center border-b absolute top-0 right-0 left-0">
+    <nav className="flex justify-center border-b fixed top-0 right-0 left-0 z-50 bg-background">
       <div className="max-w-6xl w-full flex items-center justify-between py-5">
         <Link href="/" className="flex items-center gap-2">
           <BriefcaseBusiness />
