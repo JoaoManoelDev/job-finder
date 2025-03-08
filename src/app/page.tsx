@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 const Home = () => {
   return (
-    <section className="flex flex-col justify-center items-center py-10">
+    <section className="flex flex-col justify-center items-center py-8">
       <h1 className="text-5xl font-black w-xl text-center">Diga adeus às longas buscas para uma vaga</h1>
 
       <Button variant="outline" className="mt-10 h-11 w-60 border-foreground cursor-pointer text-lg font-mono">

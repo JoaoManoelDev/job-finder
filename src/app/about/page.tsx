@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 const Abount = () => {
   return (
-    <section className="flex flex-col justify-center items-center py-10">
+    <section className="flex flex-col justify-center items-center py-8">
       <div className="max-w-6xl flex">
         <div className=" flex flex-col gap-12">
           <h1 className="text-5xl font-black">

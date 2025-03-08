@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 const NotFound = () => {
   return (
-    <main className="flex flex-col justify-center items-center gap-4 py-10">
+    <main className="flex flex-col justify-center items-center gap-4 py-8">
       <h1 className="text-5xl font-bold">Nada encontrado aqui...</h1>
 
       <Image
