@@ -7,17 +7,16 @@ import { cn } from "@/lib/utils"
 
 const NotFound = () => {
   return (
-    <main className="flex flex-col justify-center items-center gap-4 py-8">
+    <main className="flex flex-col justify-center items-center gap-4 py-10">
       <h1 className="text-5xl font-bold">Nada encontrado aqui...</h1>
 
       <Image
-        className="h-96 w-96"
+        className="h-[30rem] w-[30rem]"
         alt=""
         src="/not-found.svg"
         width={100}
         height={100}
       />
-
 
       <div className="space-y-6 flex flex-col justify-center items-center text-muted-foreground">
         <p className="text-2xl font-light">Não foi possível encontrar a página solicitada.</p>
