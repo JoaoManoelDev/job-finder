@@ -10,7 +10,7 @@ const Abount = () => {
     <section className="flex flex-col justify-center items-center py-8">
       <div className="max-w-6xl flex">
         <div className=" flex flex-col gap-12">
-          <h1 className="text-5xl font-black">
+          <h1 className="text-5xl font-black font-maven-pro">
             O que você procura, <span className="text-blue-400">nós temos!</span>
           </h1>
 
