@@ -1,6 +1,6 @@
-import { CustomInput } from "@/components/custom-input"
-import { CustomTextarea } from "@/components/custom-textarea"
-import { Button } from "@/components/ui/button"
+import { CustomInput } from "@/src/components/custom-input"
+import { CustomTextarea } from "@/src/components/custom-textarea"
+import { Button } from "@/src/components/ui/button"
 
 const CreateJobPage = () => {
   return (

@@ -2,8 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/src/components/ui/button"
+import { cn } from "@/src/lib/utils"
+import peopleImg from "@/public/people.svg"
 
 const Abount = () => {
   return (
@@ -45,9 +46,7 @@ const Abount = () => {
         <Image
           className="h-[30rem] w-[30rem]"
           alt=""
-          src="/people.svg"
-          width={100}
-          height={100}
+          src={peopleImg}
         />
       </div>
     </section>

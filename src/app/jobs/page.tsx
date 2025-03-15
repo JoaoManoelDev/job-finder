@@ -1,4 +1,4 @@
-import { type Job, JobCard } from "@/components/cards/job-card"
+import { type Job, JobCard } from "@/src/components/cards/job-card"
 
 const allJobs: Job[] = [
   {

@@ -1,7 +1,7 @@
 import { ComponentProps } from "react"
 
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/src/components/ui/label"
+import { Textarea } from "@/src/components/ui/textarea"
 
 interface CustomTextareaProps extends ComponentProps<'textarea'> {
   label?: string

@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { Maven_Pro } from "next/font/google"
 
 import "./globals.css"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ThemeProvider } from "@/providers/theme-provider"
+import { Navbar } from "@/src/components/navbar"
+import { Footer } from "@/src/components/footer"
+import { ThemeProvider } from "@/src/providers/theme-provider"
 
 export const metadata: Metadata = {
   title: "Vagas.com",

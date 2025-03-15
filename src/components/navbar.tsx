@@ -4,8 +4,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { BriefcaseBusiness } from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/src/lib/utils"
+import { buttonVariants } from "@/src/components/ui/button"
 import { ModeToggle } from "./mode-toggle"
 
 interface NavItems {

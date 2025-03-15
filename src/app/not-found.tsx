@@ -2,8 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/src/components/ui/button"
+import { cn } from "@/src/lib/utils"
+import notFoundImg from "@/public/not-found.svg"
 
 const NotFound = () => {
   return (
@@ -13,9 +14,7 @@ const NotFound = () => {
       <Image
         className="h-[30rem] w-[30rem]"
         alt=""
-        src="/not-found.svg"
-        width={100}
-        height={100}
+        src={notFoundImg}
       />
 
       <div className="space-y-6 flex flex-col justify-center items-center text-muted-foreground">

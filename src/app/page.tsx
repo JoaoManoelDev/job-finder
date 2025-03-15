@@ -1,6 +1,7 @@
 import Image from "next/image"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/src/components/ui/button"
+import peopleImg from "@/public/people.svg"
 
 const Home = () => {
   return (
@@ -14,9 +15,7 @@ const Home = () => {
       <Image
         className="h-[30rem] w-[30rem]"
         alt=""
-        src="/people.svg"
-        width={100}
-        height={100}
+        src={peopleImg}
       />
       
     </section>
