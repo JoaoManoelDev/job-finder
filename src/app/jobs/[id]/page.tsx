@@ -1,22 +1,18 @@
+import { Suspense } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 
-import { Job } from "@/src/types/jobs"
 import { JobPostingCard } from "./components/job-posting-card"
+import { JobComments } from "./components/job-comments"
+import { JobPostingCardSkeleton } from './components/skeletons/job-posting-card-skeleton'
+import { JobCommentsSkeleton } from "./components/skeletons/job-comments-skeleton"
 
 interface JobPageProps {
   params: Promise<{ id: string }>
 }
 
-interface GetJobResponse {
-  data: Job
-}
-
 const JobPage = async ({ params }: JobPageProps) => {
   const jobId = (await params).id
-
-  const response = await fetch(`https://apis.codante.io/api/job-board/jobs/${jobId}`)
-  const job: GetJobResponse = await response.json()
 
   return (
     <main className="flex flex-col justify-center items-center py-8">
@@ -29,7 +25,20 @@ const JobPage = async ({ params }: JobPageProps) => {
           Todas as Vagas
         </Link>
 
-        <JobPostingCard job={job.data} />
+
+        <div className="flex flex-col gap-8">
+          <Suspense fallback={<JobPostingCardSkeleton />}>
+            <JobPostingCard jobId={jobId} />
+          </Suspense>
+
+          <div>
+            <h2 className="mb-6 text-2xl font-bold">Comentários</h2>
+
+            <Suspense fallback={<JobCommentsSkeleton />}>
+              <JobComments jobId={jobId} />
+            </Suspense>
+          </div>
+        </div>
       </div>
     </main>
   )
