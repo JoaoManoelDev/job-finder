@@ -1,83 +1,103 @@
-import Link from "next/link";
-import { Briefcase, DollarSign, MapPin, Users } from "lucide-react";
+import Link from "next/link"
+import { ArrowLeft, Briefcase, DollarSign, MapPin, Users } from "lucide-react"
 
-import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
-import { Separator } from "@/src/components/ui/separator";
-import { Job } from "@/src/types/jobs";
+import { Badge } from "@/src/components/ui/badge"
+import { Button, buttonVariants } from "@/src/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/src/components/ui/card"
+import { Separator } from "@/src/components/ui/separator"
 import { deleteJob } from "@/src/actions/jobs"
+import { getJob } from "@/src/services/jobs/get-job"
+import { cn } from "@/src/lib/utils"
 
-export const JobPostingCard = ({ job }: { job: Job }) => {
+interface JobPostingCardProps {
+  jobId: string
+}
+
+export const JobPostingCard = async ({ jobId }: JobPostingCardProps) => {
+  const job = await getJob({ jobId })
+
   return (
-    <Card className="w-full">
-      <CardHeader className="space-y-4">
-        <div className="flex items-start justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">{job.title}</h1>
-            <p className="text-muted-foreground">
-              Vaga disponível no{" "}
-              <Link
-                href={String(job.company_website)}
-                className="text-blue-600 hover:underline"
-              >
-                {job.company}
-              </Link>
-            </p>
-          </div>
+    <>
+      {!job.error && job.data ? (
+        <Card className="w-full">
+          <CardHeader className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h1 className="text-2xl font-bold">{job.data.title}</h1>
+                <p className="text-muted-foreground">
+                  Vaga disponível no{" "}
+                  <Link
+                    href={String(job.data.company_website)}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {job.data.company}
+                  </Link>
+                </p>
+              </div>
 
-          <form className="w-32" action={deleteJob}>
-            <input type="hidden" name="id" value={job.id} />
-            <Button variant="destructive" className="cursor-pointer w-32">
-              Apagar Vaga
-            </Button>
-          </form>
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-8 w-full">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-center gap-2">
-            <MapPin className="text-muted-foreground h-5 w-5" />
-            <span>{job.city}</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Briefcase className="text-muted-foreground h-5 w-5" />
-            <div className="flex gap-2">
-              <Badge variant="secondary">
-                {job.schedule === "full time" ? "Integral" : "Meio período"}
-              </Badge>
+              <form className="w-32" action={deleteJob}>
+                <input type="hidden" name="id" value={job.data.id} />
+                <Button variant="destructive" className="cursor-pointer w-32">
+                  Apagar Vaga
+                </Button>
+              </form>
             </div>
-          </div>
+          </CardHeader>
 
-          <div className="flex items-center gap-2">
-            <DollarSign className="text-muted-foreground h-5 w-5" />
-            <span>{job.salary.toFixed(2)}</span>
-          </div>
+          <CardContent className="space-y-8 w-full">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="text-muted-foreground h-5 w-5" />
+                <span>{job.data.city}</span>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <Users className="text-muted-foreground h-5 w-5" />
-            <span>{job.number_of_positions}</span>
-          </div>
+              <div className="flex items-center gap-2">
+                <Briefcase className="text-muted-foreground h-5 w-5" />
+                <div className="flex gap-2">
+                  <Badge variant="secondary">
+                    {job.data.schedule === "full time" ? "Integral" : "Meio período"}
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <DollarSign className="text-muted-foreground h-5 w-5" />
+                <span>{job.data.salary.toFixed(2)}</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Users className="text-muted-foreground h-5 w-5" />
+                <span>{job.data.number_of_positions}</span>
+              </div>
+            </div>
+
+            <Separator />
+
+            <section>
+              <h2 className="mb-4 text-xl font-semibold">Descrição da Vaga</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {job.data.description}
+              </p>
+            </section>
+
+            <Separator />
+
+            <section>
+              <h2 className="mb-4 text-xl font-semibold">Requisitos</h2>
+              <p className="text-muted-foreground">{job.data.requirements}</p>
+            </section>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="flex flex-col gap-8 items-center justify-center h-96">
+          <h1 className="text-3xl font-bold">{job.messageError} 😥</h1>
+
+          <Link href="/jobs" className={cn(buttonVariants(), 'text-base py-5 flex items-center')}>
+            <ArrowLeft className="h-6 w-6" />
+            <span>Ir para todas as vagas</span>
+          </Link>
         </div>
-
-        <Separator />
-
-        <section>
-          <h2 className="mb-4 text-xl font-semibold">Descrição da Vaga</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            {job.description}
-          </p>
-        </section>
-
-        <Separator />
-
-        <section>
-          <h2 className="mb-4 text-xl font-semibold">Requisitos</h2>
-          <p className="text-muted-foreground">{job.requirements}</p>
-        </section>
-      </CardContent>
-    </Card>
-  );
+      )}
+    </>
+  )
 }
