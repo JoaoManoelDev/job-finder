@@ -5,6 +5,7 @@ import "./globals.css"
 import { Navbar } from "@/src/components/navbar"
 import { Footer } from "@/src/components/footer"
 import { ThemeProvider } from "@/src/providers/theme-provider"
+import { ScrollToTop } from "../components/scroll-top"
 
 export const metadata: Metadata = {
   title: "Vagas.com",
@@ -24,16 +25,20 @@ const RootLayout = ({
   return (
     <html lang="pt-br" suppressHydrationWarning className={mavenPro.variable}>
       <body className="flex flex-col min-h-screen">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <div className="flex-1 pt-20">{children}</div>
-          <Footer />
-        </ThemeProvider>
+        <ScrollToTop>
+
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <div className="flex-1 pt-20">{children}</div>
+            <Footer />
+          </ThemeProvider>
+        </ScrollToTop>
+
       </body>
     </html>
   )
