@@ -2,12 +2,12 @@ import Link from "next/link"
 import { ArrowLeft, Briefcase, DollarSign, MapPin, Users } from "lucide-react"
 
 import { Badge } from "@/src/components/ui/badge"
-import { Button, buttonVariants } from "@/src/components/ui/button"
+import { buttonVariants } from "@/src/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/src/components/ui/card"
 import { Separator } from "@/src/components/ui/separator"
-import { deleteJob } from "@/src/actions/jobs"
 import { getJob } from "@/src/services/jobs/get-job"
 import { cn } from "@/src/lib/utils"
+import { DeleteJobButton } from "./delete-job-button"
 
 interface JobPostingCardProps {
   jobId: string
@@ -35,12 +35,7 @@ export const JobPostingCard = async ({ jobId }: JobPostingCardProps) => {
                 </p>
               </div>
 
-              <form className="w-32" action={deleteJob}>
-                <input type="hidden" name="id" value={job.data.id} />
-                <Button variant="destructive" className="cursor-pointer w-32">
-                  Apagar Vaga
-                </Button>
-              </form>
+              <DeleteJobButton jobId={job.data.id} />
             </div>
           </CardHeader>
 

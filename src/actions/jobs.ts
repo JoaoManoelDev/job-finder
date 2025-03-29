@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation"
 
-export const deleteJob = async (formData: FormData) => {
+export const deleteJob = async (_: unknown, formData: FormData) => {
   const jobId = formData.get('id')
 
   const response = await fetch(`https://apis.codante.io/api/job-board/jobs/${jobId}`, {
