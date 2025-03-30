@@ -2,14 +2,7 @@ import Link from "next/link"
 
 import { buttonVariants } from "@/src/components/ui/button"
 import { cn } from "@/src/lib/utils"
-
-export interface Job {
-  id: string
-  title: string
-  company: string
-  city: string
-  salary: string
-}
+import { Job } from "@/src/services/jobs/interfaces"
 
 interface JobCardProps {
   job: Job
@@ -18,7 +11,7 @@ interface JobCardProps {
 export const JobCard = ({ job }: JobCardProps) => {
   return (
     <article
-      className="grid grid-cols-12 gap-4 items-center w-full border border-muted-foreground rounded-md p-6 font-semibold text-lg"
+      className="grid grid-cols-12 gap-4 items-center w-full border border-muted rounded-sm p-6 font-semibold text-lg border-l-4 border-l-blue-400 shadow"
     >
       <h2 className="col-span-4">{job.title}</h2>
       <p className="col-span-2">{job.company}</p>
