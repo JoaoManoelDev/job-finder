@@ -12,7 +12,7 @@ export const JobComments = async ({ jobId }: JobCommentsProps) => {
       {comments.data?.map((comment) => (
         <div
           key={comment.id}
-          className="flex flex-col gap-1 shadow-md px-4 py-2 rounded-sm border-l-4 border-l-blue-500"
+          className="flex flex-col gap-1 shadow-md px-4 py-2 rounded-sm border-l-4 border-foreground"
         >
           <p className="font-semibold text-sm">{comment.author}</p>
           <p className="leading-relaxed">{comment.content}</p>
