@@ -7,9 +7,7 @@ import { Button } from "@/src/components/ui/button"
 import { deleteJob } from "@/src/actions/jobs"
 
 export const DeleteJobButton = ({ jobId }: { jobId: string }) => {
-  const [state, deleteJobAction, isPending] = useActionState(deleteJob, null)
-
-  console.log("STATE", state)
+  const [_state, deleteJobAction, isPending] = useActionState(deleteJob, null)
 
   return (
     <form className="w-32" action={deleteJobAction}>

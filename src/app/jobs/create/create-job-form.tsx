@@ -8,9 +8,7 @@ import { Button } from "@/src/components/ui/button"
 import { createJob } from "@/src/actions/jobs"
 
 export const CreateJobForm = () => {
-  const [state, createJobAction, isPending] = useActionState(createJob, null)
-
-  console.log("MY STATE", state)
+  const [_state, createJobAction, isPending] = useActionState(createJob, null)
 
   return (
     <form className="flex flex-col gap-8" action={createJobAction}>

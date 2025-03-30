@@ -22,8 +22,6 @@ export const getJobs = async ({
 
     const response = await fetch(url)
 
-    console.log("RESPONSE JOBS", response)
-
     if (response.status === 200) {
       const job: { data: Job[] } = await response.json()
 
