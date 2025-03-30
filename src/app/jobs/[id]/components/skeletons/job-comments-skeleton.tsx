@@ -6,7 +6,7 @@ export const JobCommentsSkeleton = () => {
       {Array.from({ length: 3 }).map((_, index) => (
         <div
           key={index}
-          className="flex flex-col gap-3.5 shadow-md px-4 py-2 rounded-sm border-l-4 border-l-blue-500"
+          className="flex flex-col gap-3.5 shadow-md px-4 py-2 rounded-sm border-l-4 border-foreground"
         >
           <Skeleton className="w-32 h-4 rounded-sm" />
           <Skeleton className="w-full h-5 rounded-sm" />
