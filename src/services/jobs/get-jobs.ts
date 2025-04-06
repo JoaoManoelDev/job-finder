@@ -1,17 +1,23 @@
-import { Job } from "./interfaces"
+import { Job, JobsLinks, JobsMeta } from "./interfaces"
 
 interface GetJobsRequest {
   search: string
+  page: string
 }
 
 interface GetJobsResponse {
-  data: Job[] | null
+  jobs: {
+    data: Job[],
+    meta: JobsMeta,
+    links: JobsLinks
+  } | null
   error: boolean
   messageError?: string
 }
 
 export const getJobs = async ({
-  search
+  search,
+  page
 }: GetJobsRequest): Promise<GetJobsResponse> => {
   try {
     const url = new URL(`${process.env.SERVER_API}/job-board/jobs`)
@@ -20,33 +26,37 @@ export const getJobs = async ({
       url.searchParams.set('search', search)
     }
 
+    if (page) {
+      url.searchParams.set('page', page)
+    }
+
     const response = await fetch(url)
 
     if (response.status === 200) {
-      const job: { data: Job[] } = await response.json()
+      const jobs: { data: Job[], links: JobsLinks, meta: JobsMeta } = await response.json()
 
       return {
-        data: job.data ?? null,
+        jobs: jobs ?? null,
         error: false
       }
     }
 
     if (response.status === 404) {
       return {
-        data: null,
+        jobs: null,
         error: true,
         messageError: 'Vagas não encontrada.'
       }
     }
 
     return {
-      data: null,
+      jobs: null,
       error: true,
       messageError: "Erro ao buscar vagas. Tente novamente mais tarde.",
     };
   } catch {
     return {
-      data: null,
+      jobs: null,
       error: true,
       messageError: 'Ocorreu um erro inesperado no servidor ao buscar a vagas.'
     }
