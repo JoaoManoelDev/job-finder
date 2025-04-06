@@ -16,7 +16,10 @@ export const SearchJobInput = () => {
 
     const urlSearchParams = new URLSearchParams(searchParams)
 
-    urlSearchParams.set('search', text.trim())
+    if (text) {
+      urlSearchParams.set('search', text.trim())
+      urlSearchParams.delete('page')
+    }
 
     if (!text) {
       urlSearchParams.delete('search')
